@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Bones pràctiques - Campus d'Estiu d'Innovació Tecnològica 2015 - Habitissimo</title>
+    <title>Bones Pràctiques - Campus d'Estiu d'Innovació Tecnològica 2015 - Habitissimo</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -59,185 +59,128 @@
             <h2>Per què aquesta xerrada?</h2>
           </section>
           <section>
-            <h2>Com avaluam el codi</h2>
-            <img data-src="img/agile.gif" alt="Cowboy programming">
+            <img data-src="img/linus-torvalds.png" style="width: 60%">
+            <blockquote class="fragment" cite="https://lkml.org/lkml/2000/8/25/132">
+              "Talk is cheap. Show me the code." Linus Torvalds
+            </blockquote>
           </section>
           <section>
-            <img data-src="img/keep_calm_and_deploy.png" style="width: 50%">
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h1>Tipus de tests</h1>
+            <h2>Spaghetti code</h2>
+            <img data-src="img/spaghetti.png" style="width: 30%">
           </section>
           <section>
-            <h2>Becari</h2>
-
-            <div style="position: relative; left: 0; top: 0;">
-              <img data-src="img/internship.png" style="width: 50%; position: relative; top: 0; left: 0;" class="">
-              <img data-src="img/cross.png" style="width: 40%; position: absolute; top: 0px; left: 30%;" class="fragment plain-img">
-            </div>
-            <p class="fragment">
-              <small>
-                * <a href="https://en.wikipedia.org/wiki/Peter_Norvig">Peter Norvig</a>
-                <span class="fragment">[<a href="https://www.youtube.com/watch?v=dIEStL7riMo">vídeo</a>]</span>
-              </small>
-              </p>
-          </section>
-
-          <section>
-            <h2>Tests automatitzats</h2>
-            <ol>
-              <li class="fragment">Tests unitaris</li>
-              <li class="fragment">Tests d'integració</li>
-              <li class="fragment">Tests funcionals</li>
-              <li class="fragment">Tests d'acceptació</li>
+            <h2>Com avaluam el codi?</h2>
+            <ol style="font-size: 70%;">
+              <li class="fragment">
+                Descomposició del problema. <strong>5 punts</strong>.
+              </li>
+              <li class="fragment">Estil de codi. <strong>3 punts</strong></li>
+              <li class="fragment">Nomenclatura de classes, funciones y variables. <strong>2 punts</strong></li>
+              <li class="fragment">Correcta organització del codi. <strong>2 punts</strong></li>
+              <li class="fragment">Gestión d'excepcions y <em>edge cases</em>. <strong>2 punts</strong></li>
+              <li class="fragment">Ús de tests unitaris i bateries de proves. <strong>1 punt</strong></li>
             </ol>
           </section>
         </section>
 
         <section>
           <section>
-            <h1>Anam per feina</h1>
-            <pre class="fragment"><code data-trim contenteditable class="bash">$ git clone git@github.com:jordillull/unit-tests-uib-2015.git</code></pre>
+            <h2>1. Descomposició del problema</h2>
           </section>
           <section>
-            <h2>Python unittest</h2>
-            <pre><code data-trim contenteditable>
-import unittest
+            <pre><code data-trim contenteditable class="python">
+class CreateUserService():
 
-class MyTest(unittest.TestCase):
+  def __init__(self, email_sender):
+    self.email_sender = email_sender
 
-    def testToUpper(self):
-        self.assertEqual(toUpper('Hello world'), 'HELLO WORLD')
-            </code></pre>
+  def create_user(name, email):
+    usr = User()
+    usr.name = name
+    usr.email = email
 
-            <pre class="fragment"><code data-trim contenteditable>
-def toUpper(str):
-    new_str = ""
-    for chr in str:
-        new_str.append(chr.upper())
+    email_txt = "Welcome {name}".format(name=usr.name)
+    email_sender.send(user.email, email_txt)
 
-    return str
-            </code></pre>
-
-            <pre class="fragment"><code data-trim contenteditable>
-if __name__ == '_main__':
-    unittest.main()
-            </code></pre>
-            </section>
-
-          <section>
-            <pre><code data-trim contenteditable class="bash">
-$ python3 mytest.py
-E
-======================================================================
-ERROR: testToUpper (__main__.MyTest)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "mytest.py", line 14, in testToUpper
-    self.assertEqual(toUpper('Hello world'), 'HELLO WORLD')
-  File "mytest.py", line 7, in toUpper
-    new_str.append(chr.upper())
-AttributeError: 'str' object has no attribute 'append'
-
-----------------------------------------------------------------------
-Ran 1 test in 0.000s
-
-FAILED (errors=1)
+    return usr
             </code></pre>
           </section>
-
           <section>
-            <h2>Oops</h2>
             <pre class=""><code data-trim contenteditable class="python">
-def toUpper(str):
-    new_str = ""
-    for chr in str:
-        new_str.append(chr.upper())
+class CreateUserService():
 
-    return str
+  def __init__(self, notifier):
+    self.email_sender = notifier
+
+  def create_user(name, email):
+    usr = User()
+    usr.name = name
+    usr.email = email
+
+    self.notifier.notify_new_user(usr)
+
+    return usr
             </code></pre>
             <pre class="fragment"><code data-trim contenteditable class="python">
-def toUpper(str):
-    new_str = ""
-    for chr in str:
-        new_str += chr.upper()
+class Notifier():
+  def __init__(self, email_sender):
+    self.email_sender = email_sender
 
-    return str
-            </code></pre>
-          </section>
+  def notify_new_user(user):
+    email_txt =  "Welcome {name}".format(name=usr.name)
+    email_sender.send(user.email, email_txt)
 
-          <section>
-            <h2>Oops x2</h2>
-            <pre class=""><code data-trim contenteditable class="bash">
-$ python3 mytest.py
-F
-======================================================================
-FAIL: testToUpper (__main__.MyTest)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "mytest.py", line 14, in testToUpper
-    self.assertEqual(toUpper('Hello world'), 'HELLO WORLD')
-AssertionError: 'Hello world' != 'HELLO WORLD'
-- Hello world
-+ HELLO WORLD
-
-
-----------------------------------------------------------------------
-Ran 1 test in 0.000s
-
-FAILED (failures=1)
+    return email
             </code></pre>
           </section>
           <section>
-            <h2>Oops x2</h2>
-            <pre class=""><code data-trim contenteditable class="python">
-def toUpper(str):
-    new_str = ""
-    for chr in str:
-        new_str += chr.upper()
-
-    return str
-            </code></pre>
+          <img src="img/srp.jpg" alt="Single Responsibility Principle" style="width: 80%"/>
           </section>
-          <section>
-            <h2>Ok!</h2>
-            <pre class=""><code data-trim contenteditable class="bash">
-$ python3 mytest.py
-.
-----------------------------------------------------------------------
-Ran 1 test in 0.000s
-
-OK
-
-            </code></pre>
         </section>
-        </section>
-
         <section>
           <section>
-            <h1>Mocks</h1>
-          </section>
-          <section>
-            <h2>Testejam funcionalitats de manera independent</h2>
-          </section>
-        </section>
+            <h2>2. Estil de codi</h2>
+            <p class="fragment">Amb la col·laboració de:</p>
+            <img class="fragment" src="img/consell-mallorca.jpg" alt="Consell de Mallorca" style="width: 40%"/>
 
-        <section>
-          <section>
-            <h1>TDD</h1>
-            <h2>Test Driven Development</h2>
           </section>
           <section>
-            <h3>Escrivim primer els tests. Després desenvolupam.</h3>
+            <blockquote class="twitter-tweet" lang="en">
+              <p lang="ro" dir="ltr">.<a href="https://twitter.com/governinsular">@governinsular</a> teniu una errada al Javascript de la vostra plana web, adjunt captura de pantalla <a href="http://t.co/2rBGQTYSyV">pic.twitter.com/2rBGQTYSyV</a></p>&mdash; Joan Font (@joanfont) <a href="https://twitter.com/joanfont/status/620314636500340736">July 12, 2015</a>
+              </blockquote>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <img data-src="img/error-js.png" />
           </section>
-        </section>
+          <section>
+            <pre class=""><code data-trim contenteditable class="javascript">
+function pinta_data ()
+{
+    var fecha = new Date();
+    var diames = fecha.getDate();
+    var diasemana = fecha.getDay();
+    var mes = fecha.getMonth() +1 ;
+    var ano = fecha.getFullYear();
 
-       <section>
-          <section>
-            <h1>Integració continua</h1>
+    document.write(weekdayslong[diasemana] + ", " + diames
+                    + "/" + months[mes] + "/" + ano
+                  );
+}
+            </code></pre>
+            <pre class="fragment"><code data-trim contenteditable class="javascript">
+var weekdayslong = new makeArray ('Dilluns',
+                                  'Dimarts',
+                                  'Dimecres',
+                                  'Dijous',
+                                  'Divendres',
+                                  'Dissabte',
+                                  'Diumenge');
+            </code></pre>
+            <pre class="fragment"><code data-trim contenteditable class="javascript">
+function makeArray (){
+    for ( i = 0; i < makeArray.arguments.length; i++ )
+        this[i + 1] = makeArray.arguments[i];
+    }
+            </code></pre>
           </section>
         </section>
 
