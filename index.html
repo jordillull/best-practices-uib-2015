@@ -72,13 +72,13 @@
             <h2>Com avaluam el codi?</h2>
             <ol style="font-size: 70%;">
               <li class="fragment">
-                Descomposició del problema. <strong>5 punts</strong>.
+                Descomposició del problema. <strong>10 punts</strong>.
               </li>
-              <li class="fragment">Estil de codi. <strong>3 punts</strong></li>
-              <li class="fragment">Nomenclatura de classes, funciones y variables. <strong>2 punts</strong></li>
-              <li class="fragment">Correcta organització del codi. <strong>2 punts</strong></li>
-              <li class="fragment">Gestión d'excepcions y <em>edge cases</em>. <strong>2 punts</strong></li>
-              <li class="fragment">Ús de tests unitaris i bateries de proves. <strong>1 punt</strong></li>
+              <li class="fragment">Estil de codi. <strong>6 punts</strong></li>
+              <li class="fragment">Nomenclatura de classes, funciones y variables. <strong>4 punts</strong></li>
+              <li class="fragment">Correcta organització del codi. <strong>4 punts</strong></li>
+              <li class="fragment">Gestion d'excepcions i <em>edge cases</em>. <strong>4 punts</strong></li>
+              <li class="fragment">Ús de tests unitaris i/o bateries de proves. <strong>2 punt</strong></li>
             </ol>
           </section>
         </section>
@@ -136,13 +136,23 @@ class Notifier():
           <section>
           <img src="img/srp.jpg" alt="Single Responsibility Principle" style="width: 80%"/>
           </section>
+          <section>
+            <h2>Nombres màgics</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python"> 
+def print_chessboard():
+    for i in range(7):
+        for j in range(7)
+
+
+
+            </code></pre>
+          </section>
         </section>
         <section>
           <section>
             <h2>2. Estil de codi</h2>
             <p class="fragment">Amb la col·laboració de:</p>
             <img class="fragment" src="img/consell-mallorca.jpg" alt="Consell de Mallorca" style="width: 40%"/>
-
           </section>
           <section>
             <blockquote class="twitter-tweet" lang="en">
@@ -182,6 +192,59 @@ function makeArray (){
     }
             </code></pre>
           </section>
+          <section>
+            <h2 class="fragment" data-fragment-index="3"><em>Indentació</em> vertical</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="php">
+function saveUser($request) {
+    $user = new User;
+
+    $user->id = $request->get('id');
+    $user->name = $request->get('name');
+    $user->email = $request->get('email');
+    $user->address= $request->get('address');
+}
+            </code></pre>
+            <pre class="fragment" data-fragment-index="2"><code data-trim contenteditable class="php">
+function saveUser($request) {
+    $user = new User;
+
+    $user->id      = $request->get('id');
+    $user->name    = $request->get('name');
+    $user->email   = $request->get('email');
+    $user->address = $request->get('address');
+}
+            </code></pre>
+          </section>
+          <section>
+            <h2 class="" data-fragment-index="3"><em>Indentació</em> vertical (II)</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="sql">
+ SELECT P.NAME, S.email, S.NAME
+ FROM professor AS P
+ INNER JOIN student AS S ON (S.professor_id = P.id)
+ WHERE P.NAME = 'Carlos Guerrero'
+            </code></pre>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="sql">
+.        SELECT P.name,
+                S.email,
+                S.name
+           FROM professor AS P
+     INNER JOIN student   AS S ON (S.professor_id = P.id)
+          WHERE P.name = 'Carlos Guerrero'
+            </code></pre>
+          </section>
+          <section>
+            <h2>Cascades de comportament</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="sql"> 
+            </code></pre>
+          </section>
+          <section>
+            <h2>Brackets, please!</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="sql"> 
+            </code></pre>
+          </section>
+          <section> 
+          </section>
+
         </section>
 
       </div>
