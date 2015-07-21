@@ -70,6 +70,9 @@
           </section>
           <section>
             <h2>Com avaluam el codi?</h2>
+            <p style="font-size: 70%;" class="fragment">
+              Dues persones avaluen de manera independent el codi sense conèixer la identitat del candidat
+            </p>
             <ol style="font-size: 70%;">
               <li class="fragment">
                 Descomposició del problema. <strong>10 punts</strong>.
@@ -77,75 +80,12 @@
               <li class="fragment">Estil de codi. <strong>6 punts</strong></li>
               <li class="fragment">Nomenclatura de classes, funciones y variables. <strong>4 punts</strong></li>
               <li class="fragment">Correcta organització del codi. <strong>4 punts</strong></li>
-              <li class="fragment">Gestion d'excepcions i <em>edge cases</em>. <strong>4 punts</strong></li>
+              <li class="fragment">Gestió d'excepcions i <em>edge cases</em>. <strong>4 punts</strong></li>
               <li class="fragment">Ús de tests unitaris i/o bateries de proves. <strong>2 punt</strong></li>
             </ol>
           </section>
         </section>
 
-        <section>
-          <section>
-            <h2>1. Descomposició del problema</h2>
-          </section>
-          <section>
-            <pre><code data-trim contenteditable class="python">
-class CreateUserService():
-
-  def __init__(self, email_sender):
-    self.email_sender = email_sender
-
-  def create_user(name, email):
-    usr = User()
-    usr.name = name
-    usr.email = email
-
-    email_txt = "Welcome {name}".format(name=usr.name)
-    email_sender.send(user.email, email_txt)
-
-    return usr
-            </code></pre>
-          </section>
-          <section>
-            <pre class=""><code data-trim contenteditable class="python">
-class CreateUserService():
-
-  def __init__(self, notifier):
-    self.email_sender = notifier
-
-  def create_user(name, email):
-    usr = User()
-    usr.name = name
-    usr.email = email
-
-    self.notifier.notify_new_user(usr)
-
-    return usr
-            </code></pre>
-            <pre class="fragment"><code data-trim contenteditable class="python">
-class Notifier():
-  def __init__(self, email_sender):
-    self.email_sender = email_sender
-
-  def notify_new_user(user):
-    email_txt =  "Welcome {name}".format(name=usr.name)
-    email_sender.send(user.email, email_txt)
-
-    return email
-            </code></pre>
-          </section>
-          <section>
-          <img src="img/srp.jpg" alt="Single Responsibility Principle" style="width: 80%"/>
-          </section>
-          <section>
-            <h2>Nombres màgics</h2>
-            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python">
-def print_chessboard():
-    for i in range(7):
-        for j in range(7)
-
-            </code></pre>
-          </section>
-        </section>
         <section>
           <section>
             <h2>2. Estil de codi</h2>
@@ -306,6 +246,16 @@ if (a and b) or (c and d):
 
         <section>
           <section>
+            <h2>1. Descomposició del problema</h2>
+          </section>
+
+          <section>
+            <h2>Nombres màgics</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
             <h2>3. Correcta organització del codi</h2>
           </section>
         </section>
@@ -345,6 +295,222 @@ public function getMap() {
           </section>
         </section>
 
+        <section>
+                  <section>
+            <h1>Principis S.O.L.I.D.</h1>
+            <div class="fragment" style="font-size:60%">
+              <p>Referències:</p>
+              <ul>
+                <li><a href="http://www.oodesign.com/">OODesign</a></li>
+                <li><a href="http://blog.gauffin.org/2012/05/solid-principles-with-real-world-examples/">Jgauffin's coding den</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Principis <span style="color:red">S</span>OLID</h3>
+            <pre><code data-trim contenteditable class="python">
+class CreateUserService():
+
+  def __init__(self, email_sender):
+    self.email_sender = email_sender
+
+  def create_user(name, email):
+    usr = User()
+    usr.name = name
+    usr.email = email
+
+    email_txt = "Welcome {name}".format(name=usr.name)
+    email_sender.send(user.email, email_txt)
+
+    return usr
+            </code></pre>
+          </section>
+          <section>
+            <h3>Principis <span style="color:red">S</span>OLID</h3>
+            <pre class=""><code data-trim contenteditable class="python">
+class CreateUserService():
+
+  def __init__(self, notifier):
+    self.email_sender = notifier
+
+  def create_user(name, email):
+    usr = User()
+    usr.name = name
+    usr.email = email
+
+    self.notifier.notify_new_user(usr)
+
+    return usr
+            </code></pre>
+            <pre class="fragment"><code data-trim contenteditable class="python">
+class Notifier():
+  def __init__(self, email_sender):
+    self.email_sender = email_sender
+
+  def notify_new_user(user):
+    email_txt =  "Welcome {name}".format(name=usr.name)
+    email_sender.send(user.email, email_txt)
+
+    return email
+            </code></pre>
+          </section>
+          <section>
+            <img src="img/srp.jpg" alt="Single Responsibility Principle" style="width: 80%"/>
+          </section>
+          <section>
+            <h3>Principis S<span style="color:red">O</span>LID</h3>
+            <pre class=""><code data-trim contenteditable class="java">
+class GraphicEditor
+{
+    public void drawShape(Shape s) {
+        if (s.m_type == 1) {
+          drawRectangle(s);
+        } else if (s.m_type == 2) {
+            drawCircle(s);
+        }
+    }
+    public void drawCircle(Circle r) {....}
+    public void drawRectangle(Rectangle r) {....}
+}
+            </code></pre>
+            <pre class=""><code data-trim contenteditable class="java">
+
+class Shape {
+    int m_type;
+}
+
+class Rectangle extends Shape {
+    Rectangle() {
+        super.m_type=1;
+      }
+}
+
+class Circle extends Shape {
+    Circle() {
+        super.m_type=2;
+    }
+}
+            </code></pre>
+          </section>
+          <section>
+            <h3>Principis S<span style="color:red">O</span>LID</h3>
+            <h3>Open/Closed Principle</h3>
+            <p>Les classes han de ser tancades a modificacions i obertes a herència</p>
+          </section>
+          <section>
+            <img class="" src="img/ocp.jpg" alt="Liskov Substitution Principle Example" style="width: 80%"/>
+          </section>
+
+          <section>
+            <h3>Principis SO<span style="color:red">L</span>ID</h3>
+            <h4>Liskov Substitution Principle</h4>
+            <p>Les funcions que empren punters or referències a classes base han de poder emprar objectes derivats de la classe base.</p>
+          </section>
+          <section>
+            <h3>Principis SO<span style="color:red">L</span>ID</h3>
+            <img class="" src="img/board_thumb.png" alt="Liskov Substitution Principle Example" style="width: 90%"/>
+            <p style="font-size: 50%">[<a href="http://stackoverflow.com/questions/56860/what-is-the-liskov-substitution-principle">Referència</a>]</p>
+          </section>
+          <section>
+            <img class="" src="img/lsp.jpg" alt="Liskov Substitution Principle Example" style="width: 80%"/>
+          </section>
+
+          <section>
+            <h3>Principis SOL<span style="color:red">I</span>D</h3>
+            <h4>Interface Segregation Principle</h4>
+            <p>Un client no hauria de dependre mai d'un mètode que no necessita.</p>
+            <p class="fragment">És a dir, les interficies han de contenir el conjunt mínim de mètodes necessaris</p>
+          </section>
+          <section>
+            <h3>Principis SOL<span style="color:red">I</span>D</h3>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="java">
+interface IWorker {
+  public void work();
+  public void eat();
+}
+            </code></pre>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="java">
+class Worker implements IWorker{
+  public void work() {
+    // ....working
+  }
+  public void eat() {
+    // ...... eating in launch break
+  }
+}
+
+class Robot implements IWorker{
+  public void work() {
+    //.... working much more
+  }
+
+  public void eat() {
+    //....  ?????
+  }
+            </code></pre>
+          </section>
+          <section>
+            <h3>Principis SOL<span style="color:red">I</span>D</h3>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="java">
+interface IWorkable {
+  public void work();
+}
+
+interface IFeedable{
+  public void eat();
+}
+
+interface IWorker extends Feedable, Workable { }
+            </code></pre>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="java">
+class Worker implements IWorker { ...  }
+class Robot implements IWorkable { ...  }
+class Manager implements IFeedable { ... }
+            </code></pre>
+          </section>
+          <section>
+            <img class="" src="img/isp.jpg" alt="Liskov Substitution Principle Example" style="width: 80%"/>
+          </section>
+          <section>
+            <h3>Principis SOLI<span style="color:red">D</span></h3>
+            <h4>Dependency Inversion Principle</h4>
+            <p>Els mòduls de més alt nivell no han de dependre dels mòduls de baix nivell. Ambdos han de dependre d'abstraccions.</p>
+          </section>
+          <section>
+            <h3>Principis SOLI<span style="color:red">D</span></h3>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="java">
+public class Volvo
+{
+    B20 _engine;
+
+    public Volvo()
+    {
+       _engine = new B20();
+    }
+}
+            </code></pre>
+            <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable class="java">
+public class Volvo
+{
+    IEngine _engine;
+
+    public Volvo(IEngine engine)
+    {
+       if (engine == null) throw new ArgumentNullException("engine");
+       _engine = engine;
+    }
+}
+
+            </code></pre>
+            <pre class="fragment" data-fragment-index="2"><code data-trim contenteditable class="java">
+var myVolvo = new Volvo(new BigBadV12());
+            </code></pre>
+          </section>
+          <section>
+            <img class="" src="img/dip.jpg" alt="Liskov Substitution Principle Example" style="width: 80%"/>
+          </section>
+
+        </section>
 
       </div>
 
