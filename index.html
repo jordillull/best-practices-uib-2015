@@ -138,17 +138,21 @@ class Notifier():
           </section>
           <section>
             <h2>Nombres màgics</h2>
-            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python"> 
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python">
 def print_chessboard():
     for i in range(7):
         for j in range(7)
-
-
 
             </code></pre>
           </section>
         </section>
         <section>
+          <section>
+            <h2>2. Estil de codi</h2>
+          </section>
+          <section>
+              <h3>Disclaimer!</h3>
+          </section>
           <section>
             <h2>2. Estil de codi</h2>
             <p class="fragment">Amb la col·laboració de:</p>
@@ -234,18 +238,113 @@ function saveUser($request) {
           </section>
           <section>
             <h2>Cascades de comportament</h2>
-            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="sql"> 
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="java">
+public function getAverageDegrees(String month) {
+    int degrees = 15;
+
+    switch (month) {
+        case "january":
+            degrees -= 5;
+        case "february":
+            degrees -= 5;
+            break;
+        case "march":
+            degrees += 1;
+        case "april":
+            degrees += 3;
+            break;
+    }
+    return degrees;
+}
             </code></pre>
           </section>
           <section>
-            <h2>Brackets, please!</h2>
-            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="sql"> 
+            <h2 class="fragment" data-fragment-index="10">Brackets, please!</h2>
+            <pre class=""><code data-trim contenteditable class="java">
+if (month == "january")
+    degrees = 5;
+            </code></pre>
+            <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable class="java">
+if (month == "january")
+    degrees = 5;
+    season = "Winter";
+            </code></pre>
+            <pre class="fragment" data-fragment-index="2"><code data-trim contenteditable class="java">
+if (month == "january") {
+    degrees = 5;
+}
+            </code></pre>
+            <pre class="fragment" data-fragment-index="3"><code data-trim contenteditable class="java">
+if (month == "january") {
+    degrees = 5;
+    season = "Winter";
+}
             </code></pre>
           </section>
-          <section> 
+          <section>
+            <h2 class="fragment" data-fragment-index="10">Explicit is better than implicit</h2>
+            <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable class="js">
+x = 7 + 3 * 4 / 3 - 5;
+            </code></pre>
+            <pre class="fragment" data-fragment-index="2"><code data-trim contenteditable class="js">
+x = 7 + ((3 * 4) / 3) - 5;
+            </code></pre>
+            <pre class="fragment" data-fragment-index="3"><code data-trim contenteditable class="python">
+if a and b or c and d:
+   // Do something
+            </code></pre>
+            <pre class="fragment" data-fragment-index="4"><code data-trim contenteditable class="python">
+if (a and b) or (c and d):
+   // Do something
+}
+            </code></pre>
           </section>
-
+          <section>
+          <h3>Return early</h3>
+          </section>
         </section>
+
+        <section>
+          <section>
+            <h2>3. Correcta organització del codi</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>4. Gestió d'excepcions i <em>edge cases</em></h2>
+          </section>
+          <section>
+            <h3 class="fragment" data-fragment-index="2">Never Try catch</h3>
+            <pre class=""><code data-trim contenteditable class="php">
+public function getMap() {
+    try {
+        $filename = "map.txt"
+        ...
+    } catch {
+        // Do something
+    }
+}
+            </code></pre>
+            <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable class="php">
+public function getMap() {
+    try {
+        $filename = "map.txt"
+        ...
+    } catch (FileNotFoundException $e) {
+         // Do something
+    }
+}
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>5. Ús de tests unitaris i/o bateries de proves</h2>
+          </section>
+        </section>
+
 
       </div>
 
