@@ -109,13 +109,16 @@ Now is better than never.
 Although never is often better than *right* now.
 If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
-Namespaces are one honking great idea -- let's do more of those! 
+Namespaces are one honking great idea -- let's do more of those!
             </pre>
           </section>
         </section>
         <section>
           <section>
             <h2>1. Descomposició del problema</h2>
+          </section>
+          <section>
+              <h3>Disclaimer!</h3>
           </section>
           <section>
             <h2>1. Descomposició del problema</h2>
@@ -164,7 +167,7 @@ function makeArray (){
           <section>
             <h2 class="fragment" data-fragment-index="3">Magic Numbers</h2>
             <pre class="" data-fragment-index="1"><code data-trim contenteditable class="java">
-public static void move(Animal animal) 
+public static void move(Animal animal)
 {
     if (animal.getType() == 1) {
         animal.walk();
@@ -180,7 +183,7 @@ public static final int ATYPE_HUMAN = 1;
 public static final int ATYPE_BIRD  = 2;
 public static final int ATYPE_FISH  = 3;
 
-public static void move(Animal animal) 
+public static void move(Animal animal)
 {
     if (animal.getType() == ATYPE_HUMAN) {
         animal.walk();
@@ -194,7 +197,7 @@ public static void move(Animal animal)
           </section>
           <section>
             <h2>Expresions regulars</h2>
-            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python"> 
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python">
 import re
 def isValidCode(string):
     m = re.match("(?:^[A-C](?P:c1\d{3})-(?P=c1)$)|(?:^[D-Z](?P:c2\d{4})-(?P=c2)$)")
@@ -205,18 +208,18 @@ def isValidCode(string):
             </code></pre>
           </section>
           <section>
-            <h2 class="fragment" data-fragment-index="3">Simple is better than complex</h2> 
+            <h2 class="fragment" data-fragment-index="3">Simple is better than complex</h2>
               <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python">
 def isValidCode(string):
-  frst_chr = string[0]; 
+  frst_chr = string[0];
   if not frst_chr.isupper():
-    return False 
-    
+    return False
+
   if frst_chr in ['A','B','C']:
     lngth = 3
   else:
     lngth = 4
-    
+
   code1, code2 = string[1:].split('-')
 
   if code1 == code2 and len(code1) == lngth:
@@ -235,13 +238,13 @@ m = re.match("(?:^[A-C](?P:c1\d{3})-(?P=c1)$)|
             <a href="https://xkcd.com/1171/"><img src="img/perl_problems.png" alt="Perl problems XKCD" style="width: 80%"/></a>
           </section>
           <section>
-            <h2 class="fragment" data-fragment-index="4">Simple is better than complex</h2> 
+            <h2 class="fragment" data-fragment-index="4">Simple is better than complex</h2>
             <pre class="" data-fragment-index="1"><code data-trim contenteditable class="c">
 return (y == 1) ? 1 : 10;
             </code></pre>
             <pre class="fragment" data-fragment-index="2"><code data-trim contenteditable class="c">
 return (y == 1) ? (z == 2) ? 4 : 1 : 10;
-            </code></pre> 
+            </code></pre>
             <pre class="fragment" data-fragment-index="3"><code data-trim contenteditable class="c">
 if (y == 1) {
     if (z == 2) {
@@ -255,7 +258,7 @@ if (y == 1) {
 
 return x;
             </code></pre>
-          </section> 
+          </section>
           <section>
             <h2 class="fragment" data-fragment-index="2">Flat is better than nested</h2>
             <pre class="" data-fragment-index="1"><code data-trim contenteditable class="c">
@@ -284,11 +287,11 @@ return 1;
           <section>
             <h2>Return early</h2>
             <pre class="" data-fragment-index="1"><code data-trim contenteditable class="c">
-public function getAverageGrade(Student $student) 
+public function getAverageGrade(Student $student)
 {
   $avg_grade = null;
 
-  if ($student->isActive()) { 
+  if ($student->isActive()) {
       $subjects = student->getSubjects();
       if ($subjects) {
           foreach ($subjects as $s) {
@@ -299,7 +302,7 @@ public function getAverageGrade(Student $student)
         $avg_grade = 0;
       }
   }
-  
+
   return $avg_grade;
 }
             </code></pre>
@@ -307,7 +310,7 @@ public function getAverageGrade(Student $student)
           <section>
             <h2>Return early</h2>
             <pre class="" data-fragment-index="1"><code data-trim contenteditable class="c">
-public function getAverageGrade(Student $student) 
+public function getAverageGrade(Student $student)
 {
   if (!$student) {
     return null;
@@ -320,20 +323,17 @@ public function getAverageGrade(Student $student)
   foreach ($subjects as $s) {
     $total = $s->getGrade();
   }
-   
+
 
   return $total / count($subjects);
 }
             </code></pre>
           </section>
 
-        </section> 
+        </section>
         <section>
           <section>
             <h2>2. Estil de codi</h2>
-          </section>
-          <section>
-              <h3>Disclaimer!</h3>
           </section>
           <section>
             <h2 class="fragment" data-fragment-index="3"><em>Indentació</em> vertical</h2>
@@ -385,7 +385,7 @@ function updatePasswordsForTest()
 
     // Update passwords to 123456
 }
-			</code></pre>
+            </code></pre>
             <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable>
 function updatePasswordsForTest()
 {
@@ -395,7 +395,7 @@ function updatePasswordsForTest()
 
     // Update passwords to 123456
 }
-			</code></pre>
+            </code></pre>
           </section>
           <section>
             <h2>Cascades de comportament</h2>
@@ -476,7 +476,7 @@ if (a and b) or (c and d):
             <h3 class="fragment" data-fragment-index="2">Sindrome pokemón:</h3>
             <h3 class="fragment" data-fragment-index="2"><em>Gotta catch em' all</em></h3>
             <pre class=""><code data-trim contenteditable class="php">
-public function getMap($fileName, FileHandler $fileHandler) 
+public function getMap($fileName, FileHandler $fileHandler)
 {
     try {
     	$map = $fileHandler->readFile($fileName);
@@ -487,7 +487,7 @@ public function getMap($fileName, FileHandler $fileHandler)
 }
             </code></pre>
             <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable class="php">
-public function getMap($fileName, FileHandler $fileHandler) 
+public function getMap($fileName, FileHandler $fileHandler)
 {
     try {
     	$map = $fileHandler->readFile($fileName);
@@ -505,7 +505,7 @@ public function getMap($fileName, FileHandler $fileHandler)
 public function getStudent($name, DB $db)
 {
     $sql = "SELECT * FROM students WHERE name = '{$name}'";
-    
+
     $db->executeQuery($sql);
 }
             </code></pre>
@@ -630,7 +630,7 @@ class Circle extends Shape {
           <section>
             <h3>Principis SO<span style="color:red">L</span>ID</h3>
             <h4>Liskov Substitution Principle</h4>
-            <p>Les funcions que empren punters or referències a classes base han de poder emprar objectes derivats de la classe base.</p>
+            <p>Les funcions que empren punters o referències a classes base han de poder emprar objectes derivats de la classe base.</p>
           </section>
           <section>
             <h3>Principis SO<span style="color:red">L</span>ID</h3>
@@ -736,6 +736,12 @@ var myVolvo = new Volvo(new BigBadV12());
             <img class="" src="img/dip.jpg" alt="Liskov Substitution Principle Example" style="width: 80%"/>
           </section>
 
+        </section>
+        <section>
+          <section>
+            <h1>Preguntes</h1>
+            <h1>?</h1>
+          </section>
         </section>
 
       </div>
