@@ -41,7 +41,10 @@
       <div class="slides">
         <section>
           <h2>Bones Pràctiques</h2>
-          <h4>Campus d'Estiu d'Innovació Tecnològica UIB 2015</h4>
+          <h4>Campus d'Estiu d'Innovació Tecnològica UIB 2015</h4> 
+          <pre class="fragment"><code data-trim contenteditable class="bash">
+$ git clone https://github.com/jordillull/best-practices-uib-2015.git
+          </code></pre>
         </section>
 
         <section>
@@ -368,7 +371,7 @@ function saveUser($request) {
  INNER JOIN student AS S ON (S.professor_id = P.id)
  WHERE P.NAME = 'Carlos Guerrero'
             </code></pre>
-            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="sql">
+            <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable class="sql">
 .        SELECT P.name,
                 S.email,
                 S.name
@@ -688,7 +691,7 @@ interface IFeedable{
   public void eat();
 }
 
-interface IWorker extends Feedable, Workable { }
+interface IWorker extends IFeedable, IWorkable { }
             </code></pre>
             <pre class="" data-fragment-index="1"><code data-trim contenteditable class="java">
 class Worker implements IWorker { ...  }
@@ -743,6 +746,9 @@ var myVolvo = new Volvo(new BigBadV12());
           <section>
             <h1>Preguntes</h1>
             <h1>?</h1>
+            <pre class="fragment"><code data-trim contenteditable class="">
+$ git clone https://github.com/jordillull/best-practices-uib-2015.git
+            </code></pre>
           </section>
         </section>
 
