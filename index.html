@@ -200,7 +200,8 @@ public static void move(Animal animal)
             <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python">
 import re
 def isValidCode(string):
-    m = re.match("(?:^[A-C](?P:c1\d{3})-(?P=c1)$)|(?:^[D-Z](?P:c2\d{4})-(?P=c2)$)")
+    m = re.match("(?:^[A-C](?P:c1\d{3})-(?P=c1)$)
+                 |(?:^[D-Z](?P:c2\d{4})-(?P=c2)$)")
     if m:
         return True
     else:
