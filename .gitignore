@@ -4,6 +4,7 @@ __pycache__/
 
 # C extensions
 *.so
+*.o
 
 # Distribution / packaging
 .Python
@@ -58,3 +59,7 @@ target/
 .project
 .settings/
 .pydevproject
+
+# OThers
+*.tmp
+*.svn-base

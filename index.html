@@ -85,16 +85,40 @@
             </ol>
           </section>
         </section>
-
         <section>
           <section>
-            <h2>2. Estil de codi</h2>
+            <h1>>>> import this</h1>
+            <pre class="fragment">
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those! 
+            </pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>1. Descomposició del problema</h2>
           </section>
           <section>
-              <h3>Disclaimer!</h3>
-          </section>
-          <section>
-            <h2>2. Estil de codi</h2>
+            <h2>1. Descomposició del problema</h2>
             <p class="fragment">Amb la col·laboració de:</p>
             <img class="fragment" src="img/consell-mallorca.jpg" alt="Consell de Mallorca" style="width: 40%"/>
           </section>
@@ -133,8 +157,183 @@ var weekdayslong = new makeArray ('Dilluns',
 function makeArray (){
     for ( i = 0; i < makeArray.arguments.length; i++ )
         this[i + 1] = makeArray.arguments[i];
-    }
+}
             </code></pre>
+          </section>
+
+          <section>
+            <h2 class="fragment" data-fragment-index="3">Magic Numbers</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="java">
+public static void move(Animal animal) 
+{
+    if (animal.getType() == 1) {
+        animal.walk();
+    } else if (animal.getType() == 2) {
+        animal.fly();
+    } else if (animal.getType() == 3) {
+        animal.swim();
+    }
+}
+            </code></pre>
+            <pre class="fragment" data-fragment-index="2"><code data-trim contenteditable class="java">
+public static final int ATYPE_HUMAN = 1;
+public static final int ATYPE_BIRD  = 2;
+public static final int ATYPE_FISH  = 3;
+
+public static void move(Animal animal) 
+{
+    if (animal.getType() == ATYPE_HUMAN) {
+        animal.walk();
+    } else if (animal.getType() == ATYPE_BIRD) {
+        animal.fly();
+    } else if (animal.getType() == ATYPE_FISH) {
+        animal.swim();
+    }
+}
+            </code></pre>
+          </section>
+          <section>
+            <h2>Expresions regulars</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python"> 
+import re
+def isValidCode(string):
+    m = re.match("(?:^[A-C](?P:c1\d{3})-(?P=c1)$)|(?:^[D-Z](?P:c2\d{4})-(?P=c2)$)")
+    if m:
+        return True
+    else:
+       return False
+            </code></pre>
+          </section>
+          <section>
+            <h2 class="fragment" data-fragment-index="3">Simple is better than complex</h2> 
+              <pre class="" data-fragment-index="1"><code data-trim contenteditable class="python">
+def isValidCode(string):
+  frst_chr = string[0]; 
+  if not frst_chr.isupper():
+    return False 
+    
+  if frst_chr in ['A','B','C']:
+    lngth = 3
+  else:
+    lngth = 4
+    
+  code1, code2 = string[1:].split('-')
+
+  if code1 == code2 and len(code1) == lngth:
+    return True
+  else:
+    return False
+            </code></pre>
+
+              <pre class="" data-fragment-index="2"><code data-trim contenteditable class="python">
+m = re.match("(?:^[A-C](?P:c1\d{3})-(?P=c1)$)|
+              (?:^[D-Z](?P:c2\d{4})-(?P=c2)$)"
+            )
+            </code></pre>
+          </section>
+          <section>
+            <a href="https://xkcd.com/1171/"><img src="img/perl_problems.png" alt="Perl problems XKCD" style="width: 80%"/></a>
+          </section>
+          <section>
+            <h2 class="fragment" data-fragment-index="4">Simple is better than complex</h2> 
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="c">
+return (y == 1) ? 1 : 10;
+            </code></pre>
+            <pre class="fragment" data-fragment-index="2"><code data-trim contenteditable class="c">
+return (y == 1) ? (z == 2) ? 4 : 1 : 10;
+            </code></pre> 
+            <pre class="fragment" data-fragment-index="3"><code data-trim contenteditable class="c">
+if (y == 1) {
+    if (z == 2) {
+        x = 4;
+    } else {
+        x = 1;
+    }
+} else {
+    x = 10;
+}
+
+return x;
+            </code></pre>
+          </section> 
+          <section>
+            <h2 class="fragment" data-fragment-index="2">Flat is better than nested</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="c">
+if (y == 1) {
+    if (z == 2) {
+        x = 4;
+    } else {
+        x = 1;
+    }
+} else {
+    x = 10;
+}
+
+return x;
+            </code></pre>
+            <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable class="c">
+if (y != 1) {
+    return 10;
+}
+if (z == 2) {
+   return 4;
+}
+return 1;
+            </code></pre>
+          </section>
+          <section>
+            <h2>Return early</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="c">
+public function getAverageGrade(Student $student) 
+{
+  $avg_grade = null;
+
+  if ($student->isActive()) { 
+      $subjects = student->getSubjects();
+      if ($subjects) {
+          foreach ($subjects as $s) {
+              $total = $s->getGrade();
+          }
+          $avg_grade = $total / count($subjects);
+      } else {
+        $avg_grade = 0;
+      }
+  }
+  
+  return $avg_grade;
+}
+            </code></pre>
+          </section>
+          <section>
+            <h2>Return early</h2>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="c">
+public function getAverageGrade(Student $student) 
+{
+  if (!$student) {
+    return null;
+  }
+  $subjects = $student->getSubjects();
+  if (!$subjects) {
+    return 0;
+  }
+
+  foreach ($subjects as $s) {
+    $total = $s->getGrade();
+  }
+   
+
+  return $total / count($subjects);
+}
+            </code></pre>
+          </section>
+
+        </section> 
+        <section>
+          <section>
+            <h2>2. Estil de codi</h2>
+          </section>
+          <section>
+              <h3>Disclaimer!</h3>
           </section>
           <section>
             <h2 class="fragment" data-fragment-index="3"><em>Indentació</em> vertical</h2>
@@ -175,6 +374,28 @@ function saveUser($request) {
      INNER JOIN student   AS S ON (S.professor_id = P.id)
           WHERE P.name = 'Carlos Guerrero'
             </code></pre>
+          </section>
+          <section>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable>
+function updatePasswordsForTest()
+{
+    if (! getEnvironment() == DEVELOPMENT) {
+      return;
+    }
+
+    // Update passwords to 123456
+}
+			</code></pre>
+            <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable>
+function updatePasswordsForTest()
+{
+    if (getEnvironment() != DEVELOPMENT) {
+      return;
+    }
+
+    // Update passwords to 123456
+}
+			</code></pre>
           </section>
           <section>
             <h2>Cascades de comportament</h2>
@@ -239,19 +460,6 @@ if (a and b) or (c and d):
 }
             </code></pre>
           </section>
-          <section>
-          <h3>Return early</h3>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>1. Descomposició del problema</h2>
-          </section>
-
-          <section>
-            <h2>Nombres màgics</h2>
-          </section>
         </section>
 
         <section>
@@ -265,27 +473,45 @@ if (a and b) or (c and d):
             <h2>4. Gestió d'excepcions i <em>edge cases</em></h2>
           </section>
           <section>
-            <h3 class="fragment" data-fragment-index="2">Never Try catch</h3>
+            <h3 class="fragment" data-fragment-index="2">Sindrome pokemón:</h3>
+            <h3 class="fragment" data-fragment-index="2"><em>Gotta catch em' all</em></h3>
             <pre class=""><code data-trim contenteditable class="php">
-public function getMap() {
+public function getMap($fileName, FileHandler $fileHandler) 
+{
     try {
-        $filename = "map.txt"
-        ...
-    } catch {
-        // Do something
+    	$map = $fileHandler->readFile($fileName);
+    } catch (Exception $e) {
+        $map = new EmptyMap();
     }
+    return $map;
 }
             </code></pre>
             <pre class="fragment" data-fragment-index="1"><code data-trim contenteditable class="php">
-public function getMap() {
+public function getMap($fileName, FileHandler $fileHandler) 
+{
     try {
-        $filename = "map.txt"
-        ...
+    	$map = $fileHandler->readFile($fileName);
     } catch (FileNotFoundException $e) {
-         // Do something
+        $map = new EmptyMap();
     }
+    return $map;
 }
             </code></pre>
+          </section>
+          <section>
+            <h3 class="" data-fragment-index="2">Neteja de inputs</h3>
+            <label style="font-size:50%">Name: </label><input type="text" value="2"/>
+            <pre class="" data-fragment-index="1"><code data-trim contenteditable class="php">
+public function getStudent($name, DB $db)
+{
+    $sql = "SELECT * FROM students WHERE name = '{$name}'";
+    
+    $db->executeQuery($sql);
+}
+            </code></pre>
+          </section>
+          <section>
+            <img src="img/xkcd_sqlinjection.png" alt="Single Responsibility Principle" style="width: 80%"/>
           </section>
         </section>
 
